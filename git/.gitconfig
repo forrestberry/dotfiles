@@ -1,0 +1,11 @@
+[user]
+	name = Forrest Berry
+	email = 111962360+forrestberry@users.noreply.github.com
+[init]
+	defaultBranch = main
+
+[core]
+    editor = vim
+    excludesfile = ~/dotfiles/git/.gitignore_global
+
+
