@@ -2,13 +2,18 @@
 
 A set of dotfiles for my mac and any Debian-based Linux vm. 
 
-TODO: add pyenv to homebrew and linux install script. 
 ## Folder Structure
 dotfiles/
 ├── alacritty
+    └── theme/
+        └── gruvbox_dark.toml
+        └── solarized_light.toml
+    └── alacritty.toml
 ├── git
+    └── .gitconfig
+    └── .gitignore_global
 ├── nvim
-    └── TODO
+    └── README.md // here be dragons
 ├── scripts
     └──newgithubrep.sh*
     └──colorchange.py
