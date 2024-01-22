@@ -6,6 +6,8 @@ case $- in
       *) return;;
 esac
 
+export TERM=xterm-256color      # set TERM for linux installs that do not know Alacritty
+
 
 # ----------------------------- SOURCING FILES ------------------------------ #
 
@@ -15,11 +17,6 @@ esac
 alias ls='ls -AF1'
 alias venv=". env/bin/activate"
 alias newgitrepo="~/dotfiles/scripts/newgithubrepo.sh"
-
-# aliases for nvim/vim/vi
-alias vim="nvim"
-alias vi="\vim"
-alias v="\vi"
 
 
 # --------------------------------- PROMPT ---------------------------------- #
