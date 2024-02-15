@@ -24,6 +24,9 @@ ln -s ~/dotfiles/git/.gitconfig ~/.gitconfig
 echo "Symlink to .gitconfig created."
 ln -s ~/dotfiles/git/.gitignore_global ~/.gitignore_global
 echo "Symlink to .gitignore_global created."
+ln -s ~/dotfiles/shell/.tmux.conf ~/.tmux.conf
+echo "Symlink to .tmux.config created."
+
 
 # ------------------------------ INSTALL TOOLS ------------------------------ #
 

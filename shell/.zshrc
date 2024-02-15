@@ -22,8 +22,8 @@ alias ls="ls -AF1"
 alias newgitrepo="/Users/forrest/dotfiles/scripts/newgithubrepo.sh"
 alias venv=". env/bin/activate"
 
-alias dark="python3 /Users/forrest/dotfiles/alacritty/colorchange.py" 
-alias light="python3 /Users/forrest/dotfiles/alacritty/colorchange.py" 
+alias dark="python3 /Users/forrest/dotfiles/scripts/colorchange.py" 
+alias light="python3 /Users/forrest/dotfiles/scripts/colorchange.py" 
 
 alias readingnotes="python3 /Users/forrest/dotfiles/scripts/readingnotes.py"
 alias slk="python3 /Users/forrest/dotfiles/scripts/selkirknotes.py"
