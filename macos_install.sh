@@ -11,7 +11,7 @@ echo "Backing up existing config files..."
 [ -f ~/.vimrc ] && mv ~/.vimrc ~/.vimrc.bak
 [ -f ~/.gitconfig ] && mv ~/.gitconfig ~/.gitconfig.bak
 [ -f ~/.gitignore_global ] && mv ~/.gitignore_global ~/.gitignore_global.bak
-
+:
 # Create symlinks
 echo "Creating symlinks to dotfile configs..."
 ln -s ~/dotfiles/shell/.zshrc ~/.zshrc    # .bashrc

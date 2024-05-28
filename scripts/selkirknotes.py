@@ -1,5 +1,5 @@
 title = input('Title: ')
-tags = input('Tags (separate by a space): ')
+tags = input('Tags (separate by a comma): ')
 
 # Title Formatting
 
@@ -18,7 +18,7 @@ shortTitle = shortTitle.lower()
 
 # Tag Formatting
 tags = tags.title()
-tagList = tags.split(' ')
+tagList = tags.split(',')
 tags = []
 tags.append('\n\t- Selkirk')
 for tag in tagList:

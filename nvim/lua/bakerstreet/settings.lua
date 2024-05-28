@@ -8,8 +8,9 @@ vim.opt.sidescroll = 12         -- sidescroll for long lines moves 12 characters
 vim.opt.scrolloff = 12          -- keeps 12 lines visible when scrolling
 vim.opt.mouse = ''              -- disable mouse in all modes
 
-vim.opt.termguicolors = true
-
+-- colorscheme
+--vim.opt.termguicolors = true
+vim.cmd[[colorscheme gruvbox]]
 
 --search
 vim.opt.ignorecase = true       -- remove case specific search

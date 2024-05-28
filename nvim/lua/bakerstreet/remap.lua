@@ -1,6 +1,9 @@
 vim.g.mapleader = ' '
 
-vim.keymap.set('i', 'jk', '<esc>')
+vim.keymap.set('i', 'jk', '<Esc>', {noremap = true})
+vim.keymap.set('i', '<esc>', '<Esc>', {noremap = true})
+-- for some reason mapping jk to esc removes the ability for esc to act as esc.
+-- This solves.
 
 vim.keymap.set('n', '<leader>w', vim.cmd.w)
 vim.keymap.set('n', '<leader>q', vim.cmd.q)
@@ -10,6 +13,8 @@ vim.keymap.set('n', '<leader>nh', vim.cmd.nohl)
 vim.keymap.set('n', '<leader>e', vim.cmd.Ex)
 
 vim.keymap.set({'n', 'x'}, '<leader>c', '"+y', {desc = 'leader c to copy out of vim'})
+
+vim.keymap.set('n', '<leader>b', '<cmd>bprev<CR>')
 
 vim.keymap.set('i', '<C-x><C-Space>', '<C-x><C-o>', {desc = 'omnifunc mapping'})
 

@@ -16,4 +16,13 @@ require "paq" {
     
     'neovim/nvim-lspconfig',
 
+    --'renerocksai/telekasten.nvim',
+
+    'nvim-lua/popup.nvim', -- dependency for telescope-media-files.nvim
+
+    'nvim-telescope/telescope-media-files.nvim',
+
+    'morhetz/gruvbox'
+
 }
+

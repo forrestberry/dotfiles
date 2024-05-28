@@ -1,6 +1,5 @@
 # --------------------------------- .ZSHRC ---------------------------------- #
 
-
 # ----------------------------- SOURCING FILES ------------------------------ #
 
 source ~/dotfiles/shell/.fzf.zsh        # fzf
@@ -13,6 +12,7 @@ export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 
 # --------------------------------- ALIASES --------------------------------- #
@@ -33,6 +33,10 @@ alias notes="cd ~/Documents/notes"
 alias desktop="cd ~/Desktop"
 alias config="cd ~/.config"
 alias dotfiles="cd ~/dotfiles"
+
+# needed for using in local envs without installing everytime
+alias llm='/Users/forrest/.pyenv/versions/3.12.1/bin/llm'
+
 
 # aliases for nvim/vim/vi
 alias vim="nvim"
@@ -56,4 +60,7 @@ export SPROMPT="Correct $fg[red]%R$reset_color to $fg[blue]%r$reset_color? [yes,
 
 # ---------------------------- TERMINAL SETTINGS ---------------------------- #
 
+# set terminal colors with gruvbox themes
+source /Users/forrest/.local/share/nvim/site/pack/paqs/start/gruvbox/gruvbox_256palette.sh
 
+export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
