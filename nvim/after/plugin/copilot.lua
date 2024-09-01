@@ -1,9 +1,24 @@
 vim.g.copilot_filetypes = {
-    ['*'] = false,
+    --['*'] = false,
+    ['markdown'] = false,
+    ['text'] = false,
+
 }
 
--- ctrl [ and ] to cycle thru completions, ctrl \ for dismiss
-vim.keymap.set('i', '<C-[>', '<Plug>(copilot-next)')
-vim.keymap.set('i', '<C-]>', '<Plug>(copilot-previous)')
-vim.keymap.set('i', '<C-\\>', '<Plug>(copilot-dismiss)')
-vim.keymap.set('i', '<C-Space>', '<Plug>(copilot-suggest)')
+vim.g.copilot_no_tab_map = true -- Disable the tab for Copilot
+
+vim.keymap.set('i', '<C-y>', 'copilot#Accept()', {
+  expr = true,
+  replace_keycodes = false,
+  desc = "[A]ccept Copilot Suggestion"
+})
+
+vim.keymap.set('i', '<C-r>', '<plug>(copilot-dismiss)', { desc = "[R]eject copilot suggestion" })
+
+vim.keymap.set('i', '<C-n>', '<plug>(copilot-next)', { desc = "Cycle to [n]ext copilot suggestion" })
+
+vim.keymap.set('i', '<C-p>', '<plug>(copilot-previous)', { desc = "Cycle to previous[N] copilot suggestion" })
+
+vim.keymap.set('i', '<C-w>', '<plug>(copilot-accept-word)', { desc = "Copilot: Accept [W]ord" })
+
+vim.keymap.set('i', '<C-l>', '<plug>(copilot-accept-line)', { desc = "Copilot: Accept [L]ine" })

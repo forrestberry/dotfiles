@@ -60,7 +60,12 @@ export SPROMPT="Correct $fg[red]%R$reset_color to $fg[blue]%r$reset_color? [yes,
 
 # ---------------------------- TERMINAL SETTINGS ---------------------------- #
 
-# set terminal colors with gruvbox themes
-source /Users/forrest/.local/share/nvim/site/pack/paqs/start/gruvbox/gruvbox_256palette.sh
-
 export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
+
+. "$HOME/.atuin/bin/env"
+
+# ---------------------------------- ATUIN ---------------------------------- #
+# https://docs.atuin.sh/guide/installation/
+eval "$(atuin init zsh --disable-up-arrow)"
+
+
