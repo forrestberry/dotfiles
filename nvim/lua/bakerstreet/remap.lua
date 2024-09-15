@@ -12,7 +12,8 @@ vim.keymap.set('n', '<leader>j', vim.cmd.Vex, { desc = 'Split window vertically'
 vim.keymap.set('n', '<leader>k', vim.cmd.Hex, { desc = 'Split window horizontally' })
 vim.keymap.set('n', '<leader>nh', vim.cmd.nohl, { desc = 'Clear highlights' })
 
-
+vim.keymap.set('n', '<leader>bn', ':bnext<CR>', { desc = '[B]uffer [N]ext' })
+vim.keymap.set('n', '<leader>bp', ':bprevious<CR>', { desc = '[B]uffer [P]revious' })
 
 -- removes need for ctrl w before ctrl j,k,l,h to jump windows
 --  See `:help wincmd` for a list of all window commands
