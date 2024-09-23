@@ -59,7 +59,7 @@ local function find_file_under_cursor()
   require('telescope.builtin').find_files({ default_text = word })
 end
 
-vim.keymap.set('n', '<leader>fl', find_file_under_cursor, { desc = '[F]ind [L]inked File Under Cursor' })
+vim.keymap.set('n', '<leader>fl', find_file_under_cursor, { desc = '[f]ind [l]inked file under cursor' })
 
 
 
