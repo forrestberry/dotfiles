@@ -33,9 +33,9 @@ def run_command(cmd, cwd=None, capture_output=False):
         print(f"Error running command: {cmd}\n{e.stderr}")
         sys.exit(1)
 
-def fix_image_paths_and_links(directory):
-    """Find and replace image paths and links in markdown files."""
-    print("Fixing image paths and links in markdown files...")
+def static_file_paths_and_links(directory):
+    """Find and replace static file paths and links in markdown files."""
+    print("Fixing static file paths and links in markdown files...")
     for root, dirs, files in os.walk(directory):
         for filename in files:
             if filename.endswith('.md'):
@@ -45,16 +45,16 @@ def fix_image_paths_and_links(directory):
 
                 original_content = content
 
-                # Replace image paths
+                # Replace static file paths
                 content = re.sub(
                     r'!\[([^\]]*)\]\(static/([^\)]+)\)',
-                    r'![\1](/static/\2)',
+                    r'![\1](/\2)',
                     content,
                 )
 
-                # Replace markdown links with Hugo ref shortcode, excluding images and already processed links
+                # Replace markdown links with Hugo ref shortcode, excluding static files and already processed links
                 # From [link_text](link_target.md) to [link_text]({{< ref "link_target.md" >}})
-                # Exclude images using negative lookbehind and links already containing '{{< ref'
+                # Exclude static files using negative lookbehind and links already containing '{{< ref'
                 content = re.sub(
                     r'(?<!\!)\[([^\]]+)\]\(((?!{{< ref)[^\)]+\.md)\)',
                     r'[\1]({{< ref "\2" >}})',
@@ -82,13 +82,13 @@ def main():
     print("Running rsync posts...")
     run_command(rsync_command)
 
-    # Step 1.1: Run rsync command for images
+    # Step 1.1: Run rsync command for static files
     rsync_command = f"rsync -av --delete '{static}' '{theolexica_static}'"
     print("Running rsync static files...")
     run_command(rsync_command)
 
-    # Step 2: Fix image paths and links in markdown files
-    fix_image_paths_and_links(theolexica)
+    # Step 2: Fix static file paths and links in markdown files
+    static_file_paths_and_links(theolexica)
 
     # Step 3: git add . in the repository directory
     print("Staging changes with git add .")
