@@ -8,8 +8,8 @@ import shlex
 notes = "/Users/forrest/Documents/notes/public/"
 theolexica = "/Users/forrest/code/theolexica/content/posts"
 
-images = "/Users/forrest/Documents/notes/public/static"
-theolexica_images = "/Users/forrest/code/theolexica/static"
+static = "/Users/forrest/Documents/notes/public/static/"
+theolexica_static= "/Users/forrest/code/theolexica/static"
 
 theolexica_repo = "/Users/forrest/code/theolexica"
 
@@ -47,8 +47,8 @@ def fix_image_paths_and_links(directory):
 
                 # Replace image paths
                 content = re.sub(
-                    r'!\[([^\]]*)\]\(static/images/([^\)]+)\)',
-                    r'![\1](/static/images/\2)',
+                    r'!\[([^\]]*)\]\(static/([^\)]+)\)',
+                    r'![\1](/static/\2)',
                     content,
                 )
 
@@ -83,8 +83,8 @@ def main():
     run_command(rsync_command)
 
     # Step 1.1: Run rsync command for images
-    rsync_command = f"rsync -av --delete '{images}' '{theolexica_images}'"
-    print("Running rsync images...")
+    rsync_command = f"rsync -av --delete '{static}' '{theolexica_static}'"
+    print("Running rsync static files...")
     run_command(rsync_command)
 
     # Step 2: Fix image paths and links in markdown files
@@ -120,9 +120,12 @@ def main():
     print("-" * 40)
     print(commit_message)
     print("-" * 40)
-    confirm = input("\nDo you want to proceed with the commit? (y/n): ").strip().lower()
-    if confirm != 'y':
+    confirm = input("\nDo you want to proceed with the commit? (y/n/a): ").strip().lower()
+    if confirm == 'n':
         commit_message = input("Enter your commit message: ")
+    elif confirm != 'y':
+        print("Aborted git commit. Changes are staged and visible in local host.")
+        sys.exit(1)
 
     # Step 6: git commit and git push in the repository directory
     print("Committing changes...")
