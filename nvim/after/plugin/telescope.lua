@@ -46,15 +46,33 @@ vim.keymap.set("n", "<leader>fo", function()
     })
 end, { desc = "[F]ind in [O]pen Files" })
 
+
 -- Function to find file under cursor (handling wiki-style links)
 local function find_file_under_cursor()
-  -- Get the word under the cursor, handling wiki-style links
-  local word = vim.fn.expand('<cWORD>')
-  -- Remove surrounding [[ and ]] if they exist
-  word = word:gsub('^%[%[', ''):gsub('%]%]$', '')
+  -- Get the current line and cursor position
+  local line = vim.api.nvim_get_current_line()
+  local col = vim.fn.col('.') -- cursor column (1-based)
+
+  local function get_word_at_pos(line, pos)
+    local s = pos
+    local e = pos
+    -- Expand to the left
+    while s > 1 and line:sub(s - 1, s - 1):match('[%w_-]') do
+      s = s - 1
+    end
+    -- Expand to the right
+    while e <= #line and line:sub(e, e):match('[%w_-]') do
+      e = e + 1
+    end
+    -- Extract the word
+    return line:sub(s, e - 1)
+  end
+
+  local word = get_word_at_pos(line, col)
   -- Call Telescope's find_files with the word as the default text
   require('telescope.builtin').find_files({ default_text = word })
 end
+
 
 vim.keymap.set('n', '<leader>fl', find_file_under_cursor, { desc = '[f]ind [l]inked file under cursor' })
 
