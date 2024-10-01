@@ -92,8 +92,9 @@ local function insert_wiki_link()
         local row, col = unpack(vim.api.nvim_win_get_cursor(0))
 
         -- Adjust columns to zero-based indexing
-        local start_col = math.max(col - 3, 0)  -- Subtract 3 to account for the length of '[['
-        local end_col = col - 1  -- Subtract 1 to convert to zero-based indexing
+        local start_col = col
+        local end_col = col
+        start_col = math.max(start_col, 0) -- ensure no negative
 
         -- Remove the '[[', insert the wiki link
         vim.api.nvim_buf_set_text(0, row - 1, start_col, row - 1, end_col, {wiki_link})

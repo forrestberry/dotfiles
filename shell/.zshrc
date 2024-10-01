@@ -23,6 +23,7 @@ alias newgitrepo="/Users/forrest/dotfiles/scripts/newgithubrepo.sh"
 alias venv=". env/bin/activate"
 
 alias pub="python /Users/forrest/dotfiles/scripts/theolexica.py"
+alias gifify="python /Users/forrest/dotfiles/scripts/gifify.py"
 
 alias dark="python3 /Users/forrest/dotfiles/scripts/colorchange.py" 
 alias light="python3 /Users/forrest/dotfiles/scripts/colorchange.py" 

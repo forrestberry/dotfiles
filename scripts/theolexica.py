@@ -47,8 +47,8 @@ def static_file_paths_and_links(directory):
 
                 # Replace static file paths
                 content = re.sub(
-                    r'!\[([^\]]*)\]\(static/([^\)]+)\)',
-                    r'![\1](/\2)',
+                    r'(!?)\[([^\]]*)\]\(?\/?static/([^\)]+)\)?',
+                    r'\1[\2](/\3)',
                     content,
                 )
 
@@ -108,34 +108,42 @@ def main():
     llm_command = (
         f'echo "{escaped_diff}" | llm "Generate a git commit message based on the diff above. Be concise and do not include markdown formatting or code blocks." --no-stream -m gpt-4o-mini'
     )
-    commit_message = run_command(llm_command, capture_output=True)
+    try:
+        commit_message = run_command(llm_command, capture_output=True)
 
-    # Strip triple backticks if present
-    commit_message = commit_message.strip()
-    if commit_message.startswith('```') and commit_message.endswith('```'):
-        commit_message = commit_message[3:-3].strip()
+        # Strip triple backticks if present
+        commit_message = commit_message.strip()
+        if commit_message.startswith('```') and commit_message.endswith('```'):
+            commit_message = commit_message[3:-3].strip()
 
-    # Step 5: Prompt before committing
-    print("\nProposed commit message:")
-    print("-" * 40)
-    print(commit_message)
-    print("-" * 40)
-    confirm = input("\nDo you want to proceed with the commit? (y/n/a): ").strip().lower()
-    if confirm == 'n':
+        # Step 5: Prompt before committing
+        print("\nProposed commit message:")
+        print("-" * 40)
+        print(commit_message)
+        print("-" * 40)
+        confirm = input("\nDo you want to proceed with the commit? (y/n/a): ").strip().lower()
+        if confirm == 'n':
+            commit_message = input("Enter your commit message: ")
+        elif confirm != 'y':
+            print("Aborted git commit. Changes are staged and visible in local host.")
+            sys.exit(1)
+    except:
+        print("Error generating commit message.")
         commit_message = input("Enter your commit message: ")
-    elif confirm != 'y':
-        print("Aborted git commit. Changes are staged and visible in local host.")
-        sys.exit(1)
 
     # Step 6: git commit and git push in the repository directory
     print("Committing changes...")
     safe_commit_message = shlex.quote(commit_message)
     commit_command = f'git commit -m {safe_commit_message}'
     run_command(commit_command, cwd=repo_dir)
-    print("Pushing to remote repository...")
-    run_command("git push", cwd=repo_dir)
 
-    print("Operation completed successfully.")
+    print("Pushing to remote repository...")
+    try: 
+        run_command("git push", cwd=repo_dir)
+        print("Operation completed successfully.")
+    except:
+        print("Error pushing commit. All changes commited. Try to push later.")
+
 
 if __name__ == "__main__":
     main()
