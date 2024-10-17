@@ -1,7 +1,7 @@
-require('telescope').setup{ 
-    defaults = { 
+require('telescope').setup{
+    defaults = {
         layout_strategy = 'vertical',
-        layout_config = { 
+        layout_config = {
             height = 0.95, 
             width = 0.95 
         }, 
@@ -31,6 +31,7 @@ vim.keymap.set("n", "<leader>fa", builtin.resume, { desc = "[F]ind [A]gain (Resu
 vim.keymap.set("n", "<leader>ft", builtin.builtin, { desc = "[F]ind [T]elescope Builtin options" })
 vim.keymap.set("n", "<leader>fr", builtin.oldfiles, { desc = '[Find] [R]ecently Opened Files' })
 vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = '[F]ind [K]eymaps' })
+vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
 
 vim.keymap.set("n", "<leader>/", function()
     builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({

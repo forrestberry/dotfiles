@@ -10,17 +10,39 @@ local paqs = {
     {"nvim-telescope/telescope-fzf-native.nvim", build = 'make'},
     "nvim-telescope/telescope-ui-select.nvim",
 
-    -- LSP configs
-    -- 'neovim/nvim-lspconfig',
-    -- "williamboman/mason.nvim", -- note: must be loaded before dependants
-    -- "williamboman/mason-lspconfig.nvim",
-    -- "hrsh7th/nvim-cmp",
-    -- "saadparwaiz1/cmp_luasnip",
-    -- "hrsh7th/cmp-nvim-lsp",
-    -- "hrsh7th/cmp-path",
-    -- "nvim-treesitter/nvim-treesitter",
-
     "nvim-lua/plenary.nvim",    -- Dependency for some packages
+
+    -- Lazy loading setup for plugins
+    { "folke/lazydev.nvim", opt = true, ft = "lua" },
+    { "Bilal2453/luvit-meta", opt = true },
+
+    -- Main LSP Configuration
+    "neovim/nvim-lspconfig",
+
+    -- LSP dependencies and configuration helpers
+    { "williamboman/mason.nvim", config = function() require("mason").setup() end },
+    "williamboman/mason-lspconfig.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+
+    -- Status updates for LSP
+    { "j-hui/fidget.nvim", config = function() require("fidget").setup {} end },
+
+    -- Autocomplete capability extension for LSP
+    "hrsh7th/nvim-cmp",
+    "hrsh7th/cmp-nvim-lsp",
+
+    {
+        "L3MON4D3/LuaSnip",
+        build = function()
+            if vim.fn.has("win32") == 0 and vim.fn.executable("make") == 1 then
+                vim.cmd("!make install_jsregexp")
+            end
+        end,
+    },
+    { "saadparwaiz1/cmp_luasnip", opt = true },
+
+    -- Additional Completion Sources for nvim-cmp
+    { "hrsh7th/cmp-path", opt = true },
 }
 
 require "paq"(paqs)
