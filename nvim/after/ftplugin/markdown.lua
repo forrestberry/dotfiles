@@ -24,12 +24,11 @@ local function insert_wiki_link()
     previewer = true,
   }
 
-  
   require('telescope.builtin').find_files({
     prompt_title = opts.prompt_title,
     cwd = opts.cwd,
     previewer = opts.previewer,
-    attach_mappings = function(prompt_bufnr, map)
+    attach_mappings = function(prompt_bufnr) --, map) removed map because it was unused
       local function insert_link()
         local picker = action_state.get_current_picker(prompt_bufnr)
         local entry = action_state.get_selected_entry()
@@ -79,7 +78,7 @@ local function insert_wiki_link()
 
         -- Prompt for custom link title
         local link_title = vim.fn.input('Enter link title: ', '')
-        
+
         -- Handle empty link title
         if link_title == '' then
           link_title = filename
@@ -89,7 +88,7 @@ local function insert_wiki_link()
         local wiki_link = string.format('[%s](%s)', link_title, filename)
 
         -- Get current cursor position
-        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+        local row, col = table.unpack(vim.api.nvim_win_get_cursor(0))
 
         -- Adjust columns to zero-based indexing
         local start_col = col

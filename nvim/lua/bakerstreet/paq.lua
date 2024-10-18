@@ -43,6 +43,9 @@ local paqs = {
 
     -- Additional Completion Sources for nvim-cmp
     { "hrsh7th/cmp-path", opt = true },
+
+    -- Trouble Diagnostic UI
+    "folke/trouble.nvim",
 }
 
 require "paq"(paqs)
