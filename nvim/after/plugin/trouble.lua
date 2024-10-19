@@ -1,12 +1,26 @@
 -- Setup Trouble with default options
-require("trouble").setup{}
+require("trouble").setup{
+  modes = {
+    test = {
+      mode = "diagnostics",
+      preview = {
+        type = "split",
+        relative = "win",
+        position = "right",
+        size = 0.3,
+      },
+    },
+  },
+}
 
 -- Define keybindings
 vim.api.nvim_set_keymap('n', '<leader>xx', '<cmd>Trouble diagnostics toggle<cr>', { noremap = true, silent = true, desc = 'Diagnostics (Trouble)' })
-vim.api.nvim_set_keymap('n', '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', { noremap = true, silent = true, desc = 'Buffer Diagnostics (Trouble)' })
-vim.api.nvim_set_keymap('n', '<leader>cs', '<cmd>Trouble symbols toggle focus=false<cr>', { noremap = true, silent = true, desc = 'Symbols (Trouble)' })
-vim.api.nvim_set_keymap('n', '<leader>cl', '<cmd>Trouble lsp toggle focus=false win.position=right<cr>', { noremap = true, silent = true, desc = 'LSP Definitions / references / ... (Trouble)' })
-vim.api.nvim_set_keymap('n', '<leader>xL', '<cmd>Trouble loclist toggle<cr>', { noremap = true, silent = true, desc = 'Location List (Trouble)' })
-vim.api.nvim_set_keymap('n', '<leader>xQ', '<cmd>Trouble qflist toggle<cr>', { noremap = true, silent = true, desc = 'Quickfix List (Trouble)' })
 
+-- Keybinding to show diagnostics in a floating window for the current line
+vim.api.nvim_set_keymap(
+  'n',
+  '<leader>ee',  -- Use <leader>ee to show error preview
+  '<cmd>lua vim.diagnostic.open_float(nil, { scope = "line" })<CR>', 
+  { noremap = true, silent = true, desc = 'Show error preview for current line' }
+)
 

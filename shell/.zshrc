@@ -71,4 +71,6 @@ export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
 # https://docs.atuin.sh/guide/installation/
 eval "$(atuin init zsh --disable-up-arrow)"
 
-
+# ------------------------------ JAVA 17 PATH ------------------------------- #
+export JAVA_HOME=$JAVA_PATH
+export PATH=$JAVA_HOME/bin:$PATH

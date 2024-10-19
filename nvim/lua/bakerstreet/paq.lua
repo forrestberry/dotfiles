@@ -46,6 +46,8 @@ local paqs = {
 
     -- Trouble Diagnostic UI
     "folke/trouble.nvim",
+
+    "nvim-tree/nvim-web-devicons",
 }
 
 require "paq"(paqs)
