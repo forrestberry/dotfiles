@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# To run this script run `chmod +x linux_install.sh` and then `linux_install.sh`
+# To run this script run `chmod +x linux_install.sh` and then `bash linux_install.sh`
 
 # ----------------------------- SETUP SYMLINKS ------------------------------ #
 
