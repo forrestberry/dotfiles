@@ -72,5 +72,5 @@ export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
 eval "$(atuin init zsh --disable-up-arrow)"
 
 # ------------------------------ JAVA 17 PATH ------------------------------- #
-export JAVA_HOME=$JAVA_PATH
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home
 export PATH=$JAVA_HOME/bin:$PATH

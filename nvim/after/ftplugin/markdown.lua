@@ -88,7 +88,7 @@ local function insert_wiki_link()
         local wiki_link = string.format('[%s](%s)', link_title, filename)
 
         -- Get current cursor position
-        local row, col = table.unpack(vim.api.nvim_win_get_cursor(0))
+        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
 
         -- Adjust columns to zero-based indexing
         local start_col = col
